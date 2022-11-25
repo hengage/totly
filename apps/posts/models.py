@@ -52,7 +52,7 @@ class Post(models.Model):
             return f"{self.title} | {str(self.author).title()}"
 
     def get_absolute_url(self):
-        return reverse('article_detail', kwargs={'slug':self.slug}) # args=[str(self.slug)]
+        return reverse('post_detail', kwargs={'slug':self.slug}) # args=[str(self.slug)]
 
     def save(self, *args, **kwargs): 
         if not self.slug:
@@ -62,3 +62,23 @@ class Post(models.Model):
         ordering = ['-date_created']
         verbose_name = 'post'
         verbose_name_plural = 'posts'
+
+
+class Comment(models.Model):
+    post = models.ForeignKey(
+        Post,
+        on_delete=models.CASCADE,
+        related_name='comments'
+    )
+    commentator = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE
+    )
+    comment_body = models.TextField()
+    timestamp = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.comment_body}| {self.post}"
+
+    def get_absolute_url(self):
+        return reverse('post_detail', kwargs={'pk':self.pk})
