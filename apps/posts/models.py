@@ -1,8 +1,9 @@
 from django.db import models
 from django.template.defaultfilters import slugify
 from django.urls import reverse
+from django.conf import settings
 
-
+from .managers import PostManager
 class Category(models.Model):
     category_name = models.CharField(max_length=50, unique=True)
     slug = models.SlugField(max_length=255, null=True, blank=True, editable=False)
@@ -23,4 +24,41 @@ class Category(models.Model):
         verbose_name_plural = 'categories'
 
 
-    
+class Post(models.Model):
+    title = models.CharField(max_length=255, unique=True)
+    description = models.CharField(max_length=255, unique=True)
+    slug = models.SlugField(max_length=255, unique=True, editable=False)
+    category = models.ForeignKey(
+        Category, 
+        on_delete=models.PROTECT,
+        related_name='category',
+        default=1
+    )
+    date_created = models.DateTimeField(auto_now_add=True)
+    date_updated = models.DateTimeField(auto_now=True)
+    author = models.ForeignKey(
+        settings.AUTH_USER_MODEL, 
+        on_delete=models.CASCADE,
+        related_name='author',
+        default=''
+    )
+    body = models.TextField(required=True)
+ 
+    # Post manager.
+    objects = PostManager()
+
+
+    def __str__(self):
+            return f"{self.title} | {str(self.author).title()}"
+
+    def get_absolute_url(self):
+        return reverse('article_detail', kwargs={'slug':self.slug}) # args=[str(self.slug)]
+
+    def save(self, *args, **kwargs): 
+        if not self.slug:
+            self.slug = slugify(self.title)
+        return super().save(*args, **kwargs)
+    class Meta:
+        ordering = ['-date_created']
+        verbose_name = 'post'
+        verbose_name_plural = 'posts'
