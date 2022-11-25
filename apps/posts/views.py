@@ -6,7 +6,7 @@ from django.contrib.auth.mixins import UserPassesTestMixin
 from django.urls import reverse_lazy
 
 from .models import Post
-from .forms import CreatePostForm
+from .forms import CreatePostForm, UpdatePostForm
 
 def error_404(request, exception):
     return render(request, 'error_404.html')
@@ -34,6 +34,15 @@ def PostDetailView(request, slug):
         }
     template = 'posts/post_detail.html'
     return render(request, template, context)
+
+class UpdatePostView(UserPassesTestMixin, edit.UpdateView):
+    model = Post
+    form_class = UpdatePostForm
+    template_name = 'posts/update_post.html'
+
+    def test_func(self):
+        obj = self.get_object()
+        return obj.author == self.request.user
 
 class DeletePostView(UserPassesTestMixin, edit.DeleteView):
     model = Post

@@ -29,5 +29,5 @@ class UpdatePostForm(forms.ModelForm):
 
                'description': forms.TextInput(),
 
-               'body': forms.Textarea(attrs={'rows': 18}),
+               'content': forms.Textarea(attrs={'rows': 18}),
         }
