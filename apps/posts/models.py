@@ -42,7 +42,7 @@ class Post(models.Model):
         related_name='author',
         default=''
     )
-    body = models.TextField()
+    content = models.TextField()
  
     # Post manager.
     objects = PostManager()
