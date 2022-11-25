@@ -2,6 +2,8 @@ from django.views import generic
 from django.views.generic import edit
 from django.shortcuts import get_object_or_404
 from django.shortcuts import render
+from django.contrib.auth.mixins import UserPassesTestMixin
+from django.urls import reverse_lazy
 
 from .models import Post
 from .forms import CreatePostForm
@@ -32,3 +34,15 @@ def PostDetailView(request, slug):
         }
     template = 'posts/post_detail.html'
     return render(request, template, context)
+
+class DeletePostView(UserPassesTestMixin, edit.DeleteView):
+    model = Post
+    success_url = reverse_lazy('home')
+   
+    def test_func(self):
+        '''
+        Forbid a user from editing and deleting posts they
+        did not create.
+        '''
+        obj = self.get_object()
+        return obj.author == self.request.user
