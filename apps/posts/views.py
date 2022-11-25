@@ -5,6 +5,9 @@ from django.shortcuts import render
 
 from .models import Post
 from .forms import CreatePostForm
+
+def error_404(request, exception):
+    return render(request, 'error_404.html')
 class HomeView(generic.ListView):
     model = Post
     template_name = 'posts/home.html'
