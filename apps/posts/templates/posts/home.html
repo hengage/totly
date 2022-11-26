@@ -6,5 +6,11 @@
 
 <h3>Home</h3>
 
+{% for post in post_list %}
+
+    {{ post.title }}
+    {{ post.description }}
+{% endfor %}
+
 
 {% endblock content %}
