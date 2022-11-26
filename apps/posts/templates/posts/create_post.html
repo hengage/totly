@@ -6,8 +6,38 @@
 
 <form  method="POST" >
     {% csrf_token %}
+
     
-    {{ form.as_p }}
+    <!-- {{ form.as_p }} -->
+
+    <!-- {{ form.media }} -->
+
+    
+    <div>
+    <label for="id_title">Title:</label>
+    <input type="text" name="title" maxlength="255" required id="id_title">
+    
+    
+    </div>
+
+  
+  <div>
+    <label for="id_description">Description:</label>
+    <input type="text" name="description" maxlength="255" required id="id_description">
+  </div>
+ 
+
+  
+    <label for="id_content">Content:</label>
+  <input id="id_content" name="content" type="hidden" name="content"  />
+
+  <trix-editor 
+    input="id_content" class="django-prose-editor trix-content" 
+    data-upload-attachment-url="/prose/attachment/">
+    </trix-editor>
+
+  {{ form.media }}
+
 
     <button type="submit">Submit Post</button>
 </form>

@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     # Third party apps
     'allauth',
     'allauth.account',
+    'prose',
 ]
 
 MIDDLEWARE = [
