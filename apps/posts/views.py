@@ -5,7 +5,7 @@ from django.shortcuts import render
 from django.contrib.auth.mixins import UserPassesTestMixin
 from django.urls import reverse_lazy
 
-from .models import Post
+from .models import Post, Category
 from .forms import CreatePostForm, UpdatePostForm
 
 def error_404(request, exception):
@@ -55,3 +55,20 @@ class DeletePostView(UserPassesTestMixin, edit.DeleteView):
         '''
         obj = self.get_object()
         return obj.author == self.request.user
+
+class CategoryDetailView(generic.DetailView):
+    model = Category
+    context_object_name = 'category'
+    template_name = 'posts/category.html'
+
+    def get_context_data(self, *args, **kwargs):
+        '''
+        Get the posts related to each category
+        '''
+        category_slug  = self.kwargs['slug'].replace('-', ' ')
+        categoryposts = Post.objects.select_related().filter(
+            category__category_name__iexact=category_slug
+            )
+        context = super().get_context_data(*args, **kwargs)
+        context['categoryposts'] = categoryposts
+        return context
