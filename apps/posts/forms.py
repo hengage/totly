@@ -1,7 +1,6 @@
 from django import forms
 
-from .models import Post 
-
+from .models import Post, Comment
 
 class CreatePostForm(forms.ModelForm):
 
@@ -30,4 +29,14 @@ class UpdatePostForm(forms.ModelForm):
                'description': forms.TextInput(),
 
                'content': forms.Textarea(attrs={'rows': 18}),
+        }
+
+    
+class AddCommentForm(forms.ModelForm):
+    class Meta:
+        model = Comment
+        fields = ['comment_body',]
+
+        widgets = {
+            'comment_body': forms.Textarea(attrs={'rows': 18})
         }

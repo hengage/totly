@@ -4,9 +4,10 @@ from django.shortcuts import get_object_or_404
 from django.shortcuts import render
 from django.contrib.auth.mixins import UserPassesTestMixin
 from django.urls import reverse_lazy
+from django.http.response import HttpResponseRedirect
 
-from .models import Post, Category
-from .forms import CreatePostForm, UpdatePostForm
+from .models import Post, Category, Comment
+from .forms import CreatePostForm, UpdatePostForm, AddCommentForm
 
 def error_404(request, exception):
     return render(request, 'error_404.html')
@@ -28,9 +29,27 @@ class CreatePostView(edit.CreateView):
 
 def PostDetailView(request, slug):
     post = get_object_or_404(Post, slug__iexact=slug)
+    comments = Comment.objects.filter(
+        post=post.id
+        ).order_by('-id')
+
+    comment_form = AddCommentForm(request.POST or None)
+    if comment_form.is_valid():
+        content = request.POST.get('comment_body')
+        comment = Comment.objects.create(
+            post=post,
+            commentator=request.user,
+            comment_body=content
+            )
+        comment.save()
+        return HttpResponseRedirect(post.get_absolute_url())
+    else:
+        comment_form = AddCommentForm
 
     context = {
         'post':post,
+        'comments':comments,
+        'comment_form':comment_form,
         }
     template = 'posts/post_detail.html'
     return render(request, template, context)
