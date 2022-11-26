@@ -1,0 +1,17 @@
+{% extends '_base.html' %}
+
+{% block title %} Totly - update {{ post.title }} {% endblock title %}
+
+{% block content %}
+<h3> Update {{ post.title }}</h3>
+
+<form action="" method="post">
+    {% csrf_token %}
+
+    {{ form.as_p }}
+
+    <button type="submit">Update</button>
+</form>
+
+
+{% endblock content %}
