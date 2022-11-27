@@ -43,6 +43,7 @@ def PostDetailView(request, slug):
     comments = Comment.objects.filter(
         post=post.id
         ).order_by('-id')
+    categories = Category.objects.all()
 
     comment_form = AddCommentForm(request.POST or None)
     if comment_form.is_valid():
@@ -61,6 +62,7 @@ def PostDetailView(request, slug):
         'post':post,
         'comments':comments,
         'comment_form':comment_form,
+        'categories': categories
         }
     template = 'posts/post_detail.html'
     return render(request, template, context)
