@@ -11,13 +11,24 @@ from .forms import CreatePostForm, UpdatePostForm, AddCommentForm
 
 def error_404(request, exception):
     return render(request, 'error_404.html')
-class HomeView(generic.ListView):
+
+class CategoriesListViewMixin():
+    """
+    Get all categories
+    """
+    def get_context_data(self, *args, **kwargs):
+        categories = Category.objects.all()
+        context = super().get_context_data(*args, **kwargs)
+        context['categories'] = categories
+        return context
+    
+class HomeView(CategoriesListViewMixin, generic.ListView):
     model = Post
     template_name = 'posts/home.html'
     context_object_name = 'post_list'
     paginate_by = 6
 
-class CreatePostView(edit.CreateView):
+class CreatePostView(CategoriesListViewMixin, edit.CreateView):
     model = Post
     form_class = CreatePostForm
     template_name = 'posts/create_post.html'
@@ -54,7 +65,7 @@ def PostDetailView(request, slug):
     template = 'posts/post_detail.html'
     return render(request, template, context)
 
-class UpdatePostView(UserPassesTestMixin, edit.UpdateView):
+class UpdatePostView(UserPassesTestMixin, CategoriesListViewMixin, edit.UpdateView):
     model = Post
     form_class = UpdatePostForm
     template_name = 'posts/update_post.html'
@@ -63,7 +74,7 @@ class UpdatePostView(UserPassesTestMixin, edit.UpdateView):
         obj = self.get_object()
         return obj.author == self.request.user
 
-class DeletePostView(UserPassesTestMixin, edit.DeleteView):
+class DeletePostView(UserPassesTestMixin, CategoriesListViewMixin, edit.DeleteView):
     model = Post
     success_url = reverse_lazy('home')
    
@@ -75,7 +86,7 @@ class DeletePostView(UserPassesTestMixin, edit.DeleteView):
         obj = self.get_object()
         return obj.author == self.request.user
 
-class CategoryDetailView(generic.DetailView):
+class CategoryDetailView(CategoriesListViewMixin, generic.DetailView):
     model = Category
     context_object_name = 'category'
     template_name = 'posts/category.html'
