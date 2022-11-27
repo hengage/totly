@@ -18,7 +18,7 @@
   >
     <div class="container flex flex-wrap justify-between items-center mx-auto">
     <a href="{% url 'home' %}" class="flex items-center">
-        <img src="https://flowbite.com/docs/images/logo.svg" class="mr-3 h-6 sm:h-9" lt="Flowbite Logo">
+        <img src="https://flowbite.com/docs/images/logo.svg" class="mr-3 h-6 sm:h-9" lt="Totly Logo">
         <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white">Totly</span>
     </a>
     <div class="flex items-center md:order-2">
@@ -233,7 +233,26 @@
   </header>
 
 
-
+  <div class="md:hidden mb-5 mt14">
+    <div class="px-">
+  
+      {% if categories.all %}
+        <ul class="flex space-x-5 px-3 py-3 overflow-x-scroll">
+        {% for category in categories %}
+  
+          <li class="inlin space-x-1 min-w-fit" tyle="border: 1px solid blue;">
+            <a href="{% url 'category' category.slug %}" class="min-w-ful">
+              {{ category.category_name.title }}
+          </a>
+          </li> 
+        {% endfor %}
+        </ul>
+  
+        {% else %} 
+          <h2>No category</h2>
+      {% endif %}
+    </div>
+  </div>
 
 
 
