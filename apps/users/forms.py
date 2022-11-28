@@ -12,20 +12,13 @@ class CustomUserCreationForm(UserCreationForm):
     # Meta.widgets will not work for this custom field, so I redefined it's field and widget here.
     password1 = forms.CharField(
         label='Password',
-        widget=forms.PasswordInput(attrs={'class':'form-control'})
+        widget=forms.PasswordInput()
     )
     password2 = None
             
     class Meta:
         model = User
         fields = ['first_name', 'last_name', 'email', 'password1']
-
-        widgets = {
-            'first_name': forms.TextInput(attrs={'class':'form-control'}),
-            'last_name': forms.TextInput(attrs={'class':'form-control'}),
-            'email': forms.EmailInput(attrs={'class':'form-control'}),
-        }
-
 
     def clean_email(self):
         email = self.cleaned_data['email'].lower()
@@ -46,8 +39,6 @@ class CustomUserCreationForm(UserCreationForm):
         return password1
 
     
-
-
 class UpdateUserForm(forms.ModelForm):
     class Meta:
         model  = CustomUser

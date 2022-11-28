@@ -4,7 +4,6 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth.mixins import UserPassesTestMixin
 from django.contrib.messages.views import SuccessMessageMixin
 
-
 from .forms import UpdateUserForm
 
 User = get_user_model()

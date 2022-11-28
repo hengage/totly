@@ -22,11 +22,13 @@ class CategoriesListViewMixin():
         context['categories'] = categories
         return context
     
+
 class HomeView(CategoriesListViewMixin, generic.ListView):
     model = Post
     template_name = 'posts/home.html'
     context_object_name = 'post_list'
     paginate_by = 6
+
 
 class CreatePostView(CategoriesListViewMixin, edit.CreateView):
     model = Post
@@ -67,6 +69,7 @@ def PostDetailView(request, slug):
     template = 'posts/post_detail.html'
     return render(request, template, context)
 
+
 class UpdatePostView(UserPassesTestMixin, CategoriesListViewMixin, edit.UpdateView):
     model = Post
     form_class = UpdatePostForm
@@ -75,6 +78,7 @@ class UpdatePostView(UserPassesTestMixin, CategoriesListViewMixin, edit.UpdateVi
     def test_func(self):
         obj = self.get_object()
         return obj.author == self.request.user
+
 
 class DeletePostView(UserPassesTestMixin, CategoriesListViewMixin, edit.DeleteView):
     model = Post
@@ -87,6 +91,7 @@ class DeletePostView(UserPassesTestMixin, CategoriesListViewMixin, edit.DeleteVi
         '''
         obj = self.get_object()
         return obj.author == self.request.user
+
 
 class CategoryDetailView(CategoriesListViewMixin, generic.DetailView):
     model = Category

@@ -1787,6 +1787,14 @@ input:checked + .toggle-bg {
   padding-bottom: 0px;
 }
 
+.pb-8 {
+  padding-bottom: 2rem;
+}
+
+.pb-52 {
+  padding-bottom: 13rem;
+}
+
 .text-center {
   text-align: center;
 }
