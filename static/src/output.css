@@ -1775,6 +1775,18 @@ input:checked + .toggle-bg {
   padding-bottom: 3rem;
 }
 
+.pb-10 {
+  padding-bottom: 2.5rem;
+}
+
+.pb-1 {
+  padding-bottom: 0.25rem;
+}
+
+.pb-0 {
+  padding-bottom: 0px;
+}
+
 .text-center {
   text-align: center;
 }
@@ -2511,6 +2523,22 @@ input:checked + .toggle-bg {
 
   .lg\:pb-24 {
     padding-bottom: 6rem;
+  }
+
+  .lg\:pb-14 {
+    padding-bottom: 3.5rem;
+  }
+
+  .lg\:pb-1 {
+    padding-bottom: 0.25rem;
+  }
+
+  .lg\:pb-52 {
+    padding-bottom: 13rem;
+  }
+
+  .lg\:pb-0 {
+    padding-bottom: 0px;
   }
 
   .lg\:text-4xl {
