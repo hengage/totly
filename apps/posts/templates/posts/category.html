@@ -1,0 +1,17 @@
+{% extends '_base.html' %} 
+
+
+{% block title %} totly - category | {{ category.category_name }} {% endblock title %}
+
+{% block content %}
+<h2> {{ category.category_name.title }}</h2>
+{{ categoryposts.post.title }}
+
+{% for post in categoryposts %} 
+    {{ post.title }}
+    {{ post.author }}
+{% empty %} 
+    <h3>No posts related to {{ category.category_name }}</h3>
+{% endfor %}
+
+{% endblock content %}

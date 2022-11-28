@@ -8,3 +8,6 @@ urlpatterns = [
     path('user/', include('users.urls')),
     path('', include('posts.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+
+handler404 = 'posts.views.error_404'

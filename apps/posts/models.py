@@ -3,6 +3,9 @@ from django.template.defaultfilters import slugify
 from django.urls import reverse
 from django.conf import settings
 
+# Django prose for rich text editing
+from prose.fields import RichTextField
+
 from .managers import PostManager
 class Category(models.Model):
     category_name = models.CharField(max_length=50, unique=True)
@@ -42,7 +45,7 @@ class Post(models.Model):
         related_name='author',
         default=''
     )
-    content = models.TextField()
+    content = RichTextField()
  
     # Post manager.
     objects = PostManager()
@@ -74,7 +77,7 @@ class Comment(models.Model):
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE
     )
-    comment_body = models.TextField()
+    comment_body = RichTextField()
     timestamp = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):

@@ -1,1 +1,77 @@
-<h1>Home</h1>
+{% extends '_base.html' %}
+{% load static %}
+{% block content %}
+
+
+<main class="px-6 pb-12">
+
+    <div 
+    class="space-y-4 md:space-y-16 lg:space-y-8 md:flex mt-9 md:pt-14 justify-around content-around" 
+    tyle="border: 2px solid orange;"
+>
+    <div 
+        class="space-y-6 sm:px-0 xl:px-16 md:grow- md:w3/5 basis-3/6 md:pt-12 xl:pt-24" 
+        tyle="border:2px solid green"
+    >
+        <h1 class="text-3xl sm:text-4xl font-bold sm:px-16 md:px-0 sm:text-center md:text-left">
+            Lorem ipsum dolor sit consectetur elit.
+        </h1>
+        <p class="sm:px-10 md:px-0">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+            Fugiat cumque nulla temporibus accusantium s enim reiciendis! Sequi, expedita repudiandae.
+        </p>
+    </div>
+
+    <div class="w2/4 basis-3/5 md:pl-16 xl:pr-16 " tyle="border: 3px dotted blue;">
+        <img 
+            class="block sm:hidden mx-auto w-full md:h-auto max-w- h-aut" 
+            src="{% static '/posts/media/girl_texting.png' %}" 
+            alt=""
+        >
+        <img 
+            class="hidden sm:block mx-auto md:mt-1 md:mr-16 md:w-full rounded-md" 
+            src="{% static '/posts/media/boy_on_bed.png' %}" 
+            alt=""
+        >
+    </div>
+</div>
+
+
+    <div class="mt-16 md:mt-24 lg:px-14">
+        <h4 class="text-2xl md:text-3xl text-heading-color">Top Articles</h4>
+
+        <div class="space-y-3 sm:space-y-0 mt-4 sm:grid sm:grid-cols-2 lg:grid-cols-3 sm:gap-8 md:gap-6"
+            tyle="border: 2px solid yellow;">
+            {% for post in post_list %}
+            <div 
+                class="h56 md:w32 bg-white text-pry-font-color rounded-lg border border-gray-200 shadow-md "
+                tyle="border: 2px solid red;"
+            >
+                <div class="px-5 pt-5 pb-2 min-hfull" tyle="border: 3px dotted red;">
+                    <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray900 text-primary-color"> {{ post.title.title }}</h5>
+                    <!-- </a> -->
+                    <p class="mb-3 font-normal text-gray-700">
+                        <!-- {{ post.description }} -->
+                        <!-- {{ post.content |safe |slice:":10" }}... -->
+                        {{ post.content |safe | truncatewords_html:30 }}
+                    </p>
+                  
+                    <a 
+                        href="{% url 'post_detail' post.slug %}" 
+                        class="inline-flex items-center py-2 px-3 text-sm font-medium 
+                         text-center text-white bg-blue700 bg-primary-color rounded-lg hover:bg-blue-800
+                          focus:ring-4 focus:outline-none focus:ring-blue-300 mt-7
+                           "
+                        >
+                        Read
+                        <svg aria-hidden="true" class="ml-2 -mr-1 w-4 h-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                    </a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</main>
+
+
+{% endblock content %}
