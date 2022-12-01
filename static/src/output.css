@@ -1200,6 +1200,10 @@ input:checked + .toggle-bg {
   margin-top: 1.25rem;
 }
 
+.mt-12 {
+  margin-top: 3rem;
+}
+
 .block {
   display: block;
 }
@@ -1453,6 +1457,10 @@ input:checked + .toggle-bg {
 
 .justify-around {
   justify-content: space-around;
+}
+
+.gap-0 {
+  gap: 0px;
 }
 
 .space-x-4 > :not([hidden]) ~ :not([hidden]) {
@@ -2277,6 +2285,26 @@ input:checked + .toggle-bg {
   --tw-ring-color: rgb(75 85 99 / var(--tw-ring-opacity));
 }
 
+@media (min-width: 520px) {
+  .xsm\:flex {
+    display: flex;
+  }
+
+  .xsm\:w-3\/4 {
+    width: 75%;
+  }
+
+  .xsm\:basis-full {
+    flex-basis: 100%;
+  }
+
+  .xsm\:space-x-5 > :not([hidden]) ~ :not([hidden]) {
+    --tw-space-x-reverse: 0;
+    margin-right: calc(1.25rem * var(--tw-space-x-reverse));
+    margin-left: calc(1.25rem * calc(1 - var(--tw-space-x-reverse)));
+  }
+}
+
 @media (min-width: 640px) {
   .sm\:block {
     display: block;
@@ -2296,6 +2324,10 @@ input:checked + .toggle-bg {
 
   .sm\:w-3\/6 {
     width: 50%;
+  }
+
+  .sm\:w-3\/5 {
+    width: 60%;
   }
 
   .sm\:grid-cols-2 {
@@ -2330,6 +2362,11 @@ input:checked + .toggle-bg {
   .sm\:px-10 {
     padding-left: 2.5rem;
     padding-right: 2.5rem;
+  }
+
+  .sm\:px-12 {
+    padding-left: 3rem;
+    padding-right: 3rem;
   }
 
   .sm\:text-center {
@@ -2421,6 +2458,10 @@ input:checked + .toggle-bg {
 
   .md\:w-3\/5 {
     width: 60%;
+  }
+
+  .md\:w-2\/4 {
+    width: 50%;
   }
 
   .md\:flex-row {
@@ -2572,6 +2613,10 @@ input:checked + .toggle-bg {
 @media (min-width: 1280px) {
   .xl\:w-2\/4 {
     width: 50%;
+  }
+
+  .xl\:w-3\/5 {
+    width: 60%;
   }
 
   .xl\:px-16 {

@@ -1,20 +1,141 @@
 {% extends '_base.html' %}
 
-
-
 {% block content %}
 
-<h2>Join</h2>
 
-<form  method="post">
-    {% csrf_token %}
+<div class="px-5 smpx-12 md:mt32 md:flex justify-center items-center flex-col">
+    <div class="container-sm mx-auto">
+        <h1 class="text-center text-2xl font-medium">Sign Up</h1>
 
-    {{ form.as_p }}
+        <form 
+        id="signup_form"
+        method="POST" 
+        novalidate 
+        class="w-full mdw2/4 flex justify-center items-center flex-col mt-4"
+        tyle="border: 2px solid yellow;"
+        onsubmit="return validateSignupFormData();"
+        tyle="border: 2px solid black;"
+    >
+            {% csrf_token %}
 
-    <button type="submit"> Sign up &#x1F603; </button>
-</form>
+            <div class="space-y-3 w-full xsm:w-3/4 sm:w3/5 md:w-full xl:w3/5" tyle="border: 2px solid red;">
+                <div class="first-last-name block xsm:flex justify-between gap-0 xsm:space-x-5">
+                    <div class="xsm:basis-full">
+                        <label class="block mb-1" for="id_first_name" pattern='[Bb]anana|[Cc]herry'>
+                            First name
+                        </label>
+                        <input 
+                            type="text" 
+                            class="rounded-md w-full bg-gray-50 focus:bg-white border-gray-300"
+                            name="first_name" 
+                            class="form-control" 
+                            maxlength="150" 
+                            required
+                            id="id_first_name"
+                            {% if form.is_bound %}
+                                value="{{ form.first_name.value }}"
+                            {% endif %}
+                        >
 
-<a href="{% url 'account_login' %} ">Login</a>
+                        {% for error in form.first_name.errors %}
+                            <div class="text-sm text-red-600">
+                                {{ error }}
+                            </div>
+                        {% endfor %}
+                        <p id="signup-firstname-error-text" class="text-sm text-red-600"></p>
+
+
+                    </div>
+
+                    <div class="xsm:basis-full" tyle="border: 2px dashed blue;">
+                        <label class="block mb-1" for="id_last_name">
+                            Last name
+                        </label>
+                        <input 
+                            type="text"  
+                            class="rounded-md w-full bg-gray-50 focus:bg-white border-gray-300" 
+                            name="last_name" 
+                            maxlength="150" 
+                            required 
+                            id="id_last_name"
+                            {% if form.is_bound %}
+                                value="{{ form.last_name.value }}"
+                            {% endif %}
+                        >
+
+                        {% for error in form.last_name.errors %}
+                            <div class="text-sm text-red-600">
+                                {{ error }}
+                            </div>
+                        {% endfor %}
+                        <p id="signup-lastname-error-text" class="text-sm text-red-600"></p>
+                    </div>
+                </div>
+
+                <div class="" tyle="border: 2px dashed blue;">
+                    <label class="block mb-1" for="id_email">
+                        Email
+                    </label>
+                    <input 
+                        type="email" 
+                        class="rounded-md w-full bg-gray-50 focus:bg-white border-gray-300"
+                        name="email" 
+                        maxlength="254" 
+                        autofocus required 
+                        id="id_email"
+                        {% if form.is_bound %}
+                            value="{{ form.email.value }}"
+                        {% endif %}
+                    >
+
+                    {% for error in form.email.errors %}
+                    <div class="text-sm text-red-600">
+                        {{ error }}
+                    </div>
+                    {% endfor %}
+                    <p id="signup-email-error-text" class="text-sm text-red-600"></p>
+                </div>
+
+                <div class="" tyle="border: 2px dashed blue;">
+                    <label class="block mb-1" for="id_password1">
+                        Password
+                    </label>
+                    <input 
+                        class="rounded-md w-full bg-gray-50 focus:bg-white border-gray-300"
+                        type="password" 
+                        name="password1" 
+                        required 
+                        id="id_password1"
+                    >
+
+                    {% for error in form.password1.errors %}
+                    <div class="text-sm text-red-600">
+                        {{ error }}
+                    </div>
+                    {% endfor %}
+                    <p id="signup-password-error-text" class="text-sm text-red-600"></p>
+                </div>
+
+            {% if redirect_field_value %}
+                <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+            {% endif %}
+
+            <button 
+                type="submit" 
+                class="bg-primary-color text-white px-4 py-3 w-full 
+                rounded-lg mt-4 ease-in-out delay-150 hover:bg-button-hover duration-700"
+            >
+                Sign up &#x1F603;
+            </button>
+        </div>
+        </form>
+    </div>
+
+    <p class="mt-5 text-center">Have an account already? 
+    <a class="underline"  href="{% url 'account_login' %} ">Login</a>
+    </p>
+
+</div>
 
 
 {% endblock content %}
