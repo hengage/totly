@@ -3,23 +3,71 @@
 
 {% block content %}
 
-<h2>Login</h2>
 
-<form  method="post">
-    {% csrf_token %}
+<div class="mt-6  md:mt-32 flex justify-center items-center flex-col">
 
-    {{ form.as_p }}
+    <h2 class="text-2xl">Login</h2>
 
-    <div class="">
-        <span class="">
-            <a href="{% url 'account_reset_password' %}">Forgot passowrd</a>
-          </span>
-    </div>
+    <form method="post" class="w-full sm:w-3/6 md:w-3/4 xl:w-2/4 flex justify-center items-center flex-col mt-4">
+        {% csrf_token %}
 
-    <button type="submit"> Login </button>
-</form>
+        <div class="text-red-600">
+            {% if form.errors %}
+          
+            {{ form.errors }}
 
-<a href="{% url 'account_signup' %} "> Signup </a>
+            {% endif %}
+           
+        </div>
 
+
+        <div class="space-y-4 mt-5 w-full md:w-3/5">
+            <div class="">
+                <div class="mb-1">
+                    {{ form.login.label_tag }}
+                </div>
+
+                <input type="email" class="rounded-md w-full bg-gray-50 focus:bg-white border-gray-300" id="id_login"
+                    name="login" {% if form.is_bound %} value="{{ form.login.value }}" {% endif %}>
+
+                <div class="text-sm text-red-600">
+                    {% for error in form.login.errors %}
+                    {{ error }}
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div class="">
+                <div class="mb-1">
+                    {{ form.password.label_tag }}
+                    <span class="text-sm underline">
+                        <a href="{% url 'account_reset_password' %}">Forgot?</a>
+                    </span>
+                </div>
+
+                <input type="password" class="rounded-md w-full bg-gray-50 focus:bg-white border-gray-300"
+                    id="id_password" name="password">
+
+                <div class="text-sm text-red-600">
+                    {% for error in form.password.errors %}
+                    {{ error }}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+
+        <button class="bg-primary-color text-white 
+          px-4 py-3 w-full sm:w2/4 md:w-3/5 rounded-lg mt-4 ease-in-out delay-150
+          hover:bg-button-hover duration-700">
+            Login
+        </button>
+    </form>
+
+    <p class="mt-5 text-sm">
+        Don't have an account?
+        <a class="underline" href="{% url 'account_signup' %}">Sign up</a>
+    </p>
+</div>
 
 {% endblock content %}
