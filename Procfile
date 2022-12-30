@@ -1,1 +1,1 @@
-web: python manage.py migrate && gunicorn totly.wsgi --log-file-
+web: gunicorn totly.wsgi --log-file-
