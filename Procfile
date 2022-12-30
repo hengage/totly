@@ -1,1 +1,1 @@
-web: gunicorn totly.wsgi
+web: 'gunicorn totly.wsgi'
