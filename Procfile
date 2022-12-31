@@ -1,1 +1,1 @@
-web: gunicorn totly.wsgi --log-file -
+web: gunicorn totly.wsgi:application --log-file -
