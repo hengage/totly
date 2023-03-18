@@ -13,11 +13,14 @@
 
         <div class="text-red-600">
             {% if form.errors %}
-          
-            {{ form.errors }}
+            {% for field, error in form.errors.items %}
+            <!-- Display other errors asides errors for login and password fields here -->
+            {% if not form.login.errors and not form.password.errors  %}
+               {{ error }}<br>
+               {% endif %}
+            {% endfor %}
 
             {% endif %}
-           
         </div>
 
 
