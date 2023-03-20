@@ -109,3 +109,18 @@ class CategoryDetailView(CategoriesListViewMixin, generic.DetailView):
         context = super().get_context_data(*args, **kwargs)
         context['categoryposts'] = categoryposts
         return context
+    
+class DeleteCommentView(UserPassesTestMixin, edit.DeleteView):
+    model = Comment
+
+    def test_func(self):
+        '''
+        Forbid a user from deleting comments they
+        did not create.
+        '''
+        obj = self.get_object()
+        return obj.commentator == self.request.user
+    
+    def get_success_url(self):
+        post = self.get_object().post
+        return post.get_absolute_url()
