@@ -1,8 +1,21 @@
-
 from pathlib import Path
 import os, sys
+
 from decouple import config
 import dj_database_url
+import sentry_sdk
+
+from sentry_sdk.integrations.django import DjangoIntegration
+
+sentry_sdk.init(
+    dsn="https://03cfb7a4c09a41f3bd64b9100b86c362@o1061170.ingest.sentry.io/6051389",
+    integrations=[DjangoIntegration()],
+
+     traces_sample_rate=1.0,
+
+    send_default_pii=True,
+)
+
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.join(BASE_DIR,'apps'))
