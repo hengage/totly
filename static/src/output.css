@@ -1971,6 +1971,10 @@ input:checked + .toggle-bg {
   text-decoration-line: underline;
 }
 
+.line-through {
+  text-decoration-line: line-through;
+}
+
 .opacity-0 {
   opacity: 0;
 }
