@@ -171,10 +171,11 @@
                 md:flex md:w-auto md:order-1 mt-3 md:mt-0"
                 id="mobile-menu-2"
             >
-                <form action="" class="md:flex space-x-2 w-ful">
+                <form action="{% url 'search' %}" class="md:flex space-x-2 w-ful">
                     <input 
                         type="text" 
                         id="search-navbar" 
+                        name="q"
                         class="block px-6 w-full text-gray-900 bg-gray-50 rounded-lg border 
                         border-gray-300 sm:text-sm focus:ring-blue-500 focus:border-blue-500" 
                         placeholder="Search..."

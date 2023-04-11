@@ -124,3 +124,12 @@ class DeleteCommentView(UserPassesTestMixin, edit.DeleteView):
     def get_success_url(self):
         post = self.get_object().post
         return post.get_absolute_url()
+
+class SearchView(CategoriesListViewMixin, generic.ListView):
+    template_name = 'posts/search.html'
+    context_object_name = 'search_results'
+
+    def get_queryset(self):
+        query = self.request.GET.get('q')
+        object_list = Post.objects.search(query)
+        return object_list

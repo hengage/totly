@@ -5,7 +5,7 @@ class PostQuerySet(models.QuerySet):
     def search(self, query=None):
         if query is None or query=='':
             return self.none()
-        lookups = Q(title__icontains=query) | Q(body__icontains=query)
+        lookups = Q(title__icontains=query) | Q(content__icontains=query)
         return self.filter(lookups)
 
 class PostManager(models.Manager):

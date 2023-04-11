@@ -1104,8 +1104,8 @@ input:checked + .toggle-bg {
   margin-bottom: 1rem;
 }
 
-.mt-44 {
-  margin-top: 11rem;
+.mt-40 {
+  margin-top: 10rem;
 }
 
 .mb-10 {
@@ -1216,8 +1216,12 @@ input:checked + .toggle-bg {
   margin-top: 0.5rem;
 }
 
-.mt-40 {
-  margin-top: 10rem;
+.mt-24 {
+  margin-top: 6rem;
+}
+
+.mt-32 {
+  margin-top: 8rem;
 }
 
 .block {
@@ -1969,10 +1973,6 @@ input:checked + .toggle-bg {
 
 .underline {
   text-decoration-line: underline;
-}
-
-.line-through {
-  text-decoration-line: line-through;
 }
 
 .opacity-0 {
