@@ -44,6 +44,7 @@ class CreatePostView(CategoriesListViewMixin, edit.CreateView):
 
 def PostDetailView(request, slug, num_comments=6):
     post = get_object_or_404(Post, slug__iexact=slug)
+    unpaginated_comments = Comment.objects.filter(post=post.id)
     comments = Comment.objects.filter(
         post=post.id
         ).order_by('-id')[:num_comments]
@@ -65,6 +66,7 @@ def PostDetailView(request, slug, num_comments=6):
     context = {
         'post':post,
         'comments':comments,
+        'unpaginated_comments': unpaginated_comments,
         'comment_form':comment_form,
         'num_comments': num_comments,
         'categories': categories

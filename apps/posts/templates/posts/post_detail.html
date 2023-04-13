@@ -1,4 +1,5 @@
 {% extends '_base.html' %}
+{% load static %}
 {% block title %} Totly - {{ post.title }}{% endblock title %}
 
 {% block content %}
@@ -157,13 +158,13 @@
 
    <!-- ========================== Dislay comments ====================================== -->
    <div>
-    <ul id="comment-list">
+    <ul id="comments-list">
         {% include 'posts/comments.html' %}
     </ul>
 
         {{ comments|length }}
         
-    {% if comments|length > num_comments %}
+    {% if unpaginated_comments|length > num_comments %}
     <button 
     id="load-more-comments" data-post-id="{{ post.id }}" data-offset="{{ num_comments }}"
     >
@@ -241,5 +242,7 @@
     </div>
 {% endfor %}
 </section>
+
+<script src="{% static 'js/loadMoreComments.js' %}"></script>
 
 {% endblock content %}
