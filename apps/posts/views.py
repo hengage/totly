@@ -5,6 +5,8 @@ from django.shortcuts import render
 from django.contrib.auth.mixins import UserPassesTestMixin
 from django.urls import reverse_lazy
 from django.http.response import HttpResponseRedirect
+from django.http import JsonResponse
+from django.template.loader import render_to_string
 
 from .models import Post, Category, Comment
 from .forms import CreatePostForm, UpdatePostForm, AddCommentForm
@@ -40,11 +42,11 @@ class CreatePostView(CategoriesListViewMixin, edit.CreateView):
         return super().form_valid(form)
     
 
-def PostDetailView(request, slug):
+def PostDetailView(request, slug, num_comments=6):
     post = get_object_or_404(Post, slug__iexact=slug)
     comments = Comment.objects.filter(
         post=post.id
-        ).order_by('-id')
+        ).order_by('-id')[:num_comments]
     categories = Category.objects.all()
 
     comment_form = AddCommentForm(request.POST or None)
@@ -64,10 +66,20 @@ def PostDetailView(request, slug):
         'post':post,
         'comments':comments,
         'comment_form':comment_form,
+        'num_comments': num_comments,
         'categories': categories
         }
     template = 'posts/post_detail.html'
     return render(request, template, context)
+
+def load_more_comments(request):
+    post_id = request.GET.get('post_id')
+    offset = int(request.GET.get('offset'))
+    comments = Comment.objects.filter(post=post_id).order_by('-id')[offset:offset+6]
+    data = {
+        'html': render_to_string('posts/comments.html', {'comments': comments})
+    }
+    return JsonResponse(data)
 
 
 class UpdatePostView(UserPassesTestMixin, CategoriesListViewMixin, edit.UpdateView):
