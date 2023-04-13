@@ -40,34 +40,68 @@ class CreatePostView(CategoriesListViewMixin, edit.CreateView):
         return super().form_valid(form)
     
 
-def PostDetailView(request, slug):
-    post = get_object_or_404(Post, slug__iexact=slug)
-    comments = Comment.objects.filter(
-        post=post.id
+# def PostDetailView(request, slug):
+#     post = get_object_or_404(Post, slug__iexact=slug)
+#     comments = Comment.objects.filter(
+#         post=post.id
+#         ).order_by('-id')
+#     categories = Category.objects.all()
+
+#     comment_form = AddCommentForm(request.POST or None)
+#     if comment_form.is_valid():
+#         content = request.POST.get('comment_body')
+#         comment = Comment.objects.create(
+#             post=post,
+#             commentator=request.user,
+#             comment_body=content
+#             )
+#         comment.save()
+#         return HttpResponseRedirect(post.get_absolute_url())
+#     else:
+#         comment_form = AddCommentForm
+
+#     context = {
+#         'post':post,
+#         'comments':comments,
+#         'comment_form':comment_form,
+#         'categories': categories
+#         }
+#     template = 'posts/post_detail.html'
+#     return render(request, template, context)
+
+class PostDetailView(CategoriesListViewMixin, edit.FormMixin,generic.DetailView):
+    model = Post
+    template_name = 'posts/post_detail.html'
+    context_object_name = 'post'
+    form_class = AddCommentForm
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['comments'] = Comment.objects.filter(
+            post=self.object.id
         ).order_by('-id')
-    categories = Category.objects.all()
+        # context['categories'] = Category.objects.all()
+        context['comment_form'] = self.get_form()
+        return context
 
-    comment_form = AddCommentForm(request.POST or None)
-    if comment_form.is_valid():
-        content = request.POST.get('comment_body')
-        comment = Comment.objects.create(
-            post=post,
-            commentator=request.user,
-            comment_body=content
-            )
+    def post(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        form = self.get_form()
+        if form.is_valid():
+            return self.form_valid(form)
+        else:
+            return self.form_invalid(form)
+
+    def form_valid(self, form):
+        comment = form.save(commit=False)
+        comment.post = self.object
+        comment.commentator = self.request.user
         comment.save()
-        return HttpResponseRedirect(post.get_absolute_url())
-    else:
-        comment_form = AddCommentForm
+        return super().form_valid(form)
+    
+    def get_success_url(self):
+        return self.object.get_absolute_url()
 
-    context = {
-        'post':post,
-        'comments':comments,
-        'comment_form':comment_form,
-        'categories': categories
-        }
-    template = 'posts/post_detail.html'
-    return render(request, template, context)
 
 
 class UpdatePostView(UserPassesTestMixin, CategoriesListViewMixin, edit.UpdateView):
