@@ -5,10 +5,10 @@ $('#load-more-comments').click(function() {
     $.get('/load_more_comments/', {post_id, offset}, function(data) {
         $('#comments-list').append(data.html);
         $('#load-more-comments').data('offset', offset + 6);
-        console.log(data.html);
-        if ( data.html === null || data.html.trim() === '') {
-            console.log('if statement')
+        if ( !data.has_more_comments) {
             $('#load-more-comments').hide();
         }
-    });
+    }).fail(function() {
+        console.log('Failed to load more comments');
+    });;
 });

@@ -77,9 +77,16 @@ def PostDetailView(request, slug, num_comments=6):
 def load_more_comments(request):
     post_id = request.GET.get('post_id')
     offset = int(request.GET.get('offset'))
-    comments = Comment.objects.filter(post=post_id).order_by('-id')[offset:offset+6]
+    comments = Comment.objects.filter(
+        post=post_id
+    ).order_by('-id')[offset:offset+6]
+    
+    has_more_comments = Comment.objects.filter(
+        post=post_id
+    ).count() > offset + 6
     data = {
-        'html': render_to_string('posts/comments.html', {'comments': comments})
+        'html': render_to_string('posts/comments.html', {'comments': comments}),
+        'has_more_comments': has_more_comments
     }
     return JsonResponse(data)
 
