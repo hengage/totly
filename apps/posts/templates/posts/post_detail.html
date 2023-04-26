@@ -162,13 +162,15 @@
         {% include 'posts/comments.html' %}
     </ul>
 
-        {{ comments|length }}
         
     {% if unpaginated_comments|length > num_comments %}
     <button 
-    id="load-more-comments" data-post-id="{{ post.id }}" data-offset="{{ num_comments }}"
+    id="load-more-comments" 
+    data-post-id="{{ post.id }}" data-offset="{{ num_comments }}"
+    class="text-white bg-primary-color hover:bg-blue-800 focus:ring-4
+     focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2"
     >
-        Load More
+        More comments
     </button>
     {% endif %}
     </div>
