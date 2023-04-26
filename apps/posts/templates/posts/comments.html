@@ -75,11 +75,9 @@
         </button>
     </div>
 </article>
-{% endfor %}
 
- <!-- ===================== Delete comment modal ========================= -->
- {% for comment in comments.all %}
- <div 
+
+<div 
  class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 p-4 md:inset-0 h-modal md:h-full" 
  id="delete-comment-modal-{{ comment.pk }}" 
  tabindex="-1"

@@ -1,12 +1,13 @@
 $('#load-more-comments').click(function() {
-    console.log('load more clicked')
-    console.log($(this).data('offset'))
     var post_id = $(this).data('post-id');
     var offset = $(this).data('offset');
-    $.get('/load_more_comments/', {post_id: post_id, offset: offset}, function(data) {
+
+    $.get('/load_more_comments/', {post_id, offset}, function(data) {
         $('#comments-list').append(data.html);
         $('#load-more-comments').data('offset', offset + 6);
-        if (data.html == '') {
+        console.log(data.html);
+        if ( data.html === null || data.html.trim() === '') {
+            console.log('if statement')
             $('#load-more-comments').hide();
         }
     });
