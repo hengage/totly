@@ -5,37 +5,51 @@
 {% block content %}
 
 
-<main class="mt-12 md:mt-36">
-  <form method="POST">
+<main class="mt-12 md:mt-36 px-2" style="border: 3px solid blu;">
+  <form method="POST" class="space-y-4" style="border: 1px solid re;">
     {% csrf_token %}
 
-
     <!-- {{ form.as_p }} -->
+    <!-- <div class="">
+    </div> -->
 
     <div>
-      <label for="id_title">Title:</label>
-      <input type="text" name="title" maxlength="255" required id="id_title">
+      <label for="id_title" class="block">Title:</label>
+      <input type="text" name="title" maxlength="255" required id="id_title" class="rounded w-full">
     </div>
 
     <div>
-      <label for="id_description">Description:</label>
-      <input type="text" name="description" maxlength="255" required id="id_description">
+      <label for="id_description" class="block" >Description:</label>
+      <input type="text" name="description" maxlength="255" required id="id_description" class="rounded w-full">
     </div>
 
     <div>
-      <label for="id_category">Category:</label>
-      {{form.category }}
+      <label for="id_category" class="block">Category:</label>
+      <div class="rounded w-full">
+      <!-- {{form.category }} -->
+      <select name="category" id="id_category" class="w-full">
+        <!-- {% for category in form.category %}
+        <option value="{{ category.id }}" class="w-10">{{ category }}</option>
+        {% endfor %} -->
+
+        {% for category in categories %}
+        <option value="{{ category.id }}">{{ category.category_name }}</option>
+        {% endfor %}
+      </select>
+      </div>      
     </div>
 
 
     <div class="">
-      <label for="id_content">Content:</label>
+      <label for="id_content" class="block">Content:</label>
       <input id="id_content" name="content" type="hidden" name="content" />
-    </div>
 
-    <trix-editor input="id_content" class="django-prose-editor trix-content"
+      <trix-editor input="id_content" class="django-prose-editor trix-content rounded"
       data-upload-attachment-url="/prose/attachment/">
     </trix-editor>
+    </div>
+
+    
 
     {{ form.media }}
 
