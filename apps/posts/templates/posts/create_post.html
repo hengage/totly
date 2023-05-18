@@ -4,38 +4,64 @@
 
 {% block content %}
 
-    
-<main class="mt-12 md:mt-36">
-  <form  method="POST" >
+
+<main class="mt-12 md:mt-36 px-2 xsm:px-16 pb-16 " style="border: 3px solid blu;">
+
+  <h2 class="text-3xl text-gray-700 uppercase">Craft Your Article</h2>
+  <form method="POST" class="mt-9" style="border: 1px solid re;">
     {% csrf_token %}
 
-    
-    <!-- {{ form.as_p }} -->
+    <div class="space-y-4 lg:w-4/5 xl:w-4/6">
 
-    <!-- {{ form.media }} -->
-    <div>
-    <label for="id_title">Title:</label>
-    <input type="text" name="title" maxlength="255" required id="id_title">
-    
+    <div class="">
+      <label for="id_title" class="block">Title:</label>
+      <input type="text" name="title" maxlength="255" required id="id_title" class="rounded w-full">
     </div>
 
-  <div>
-    <label for="id_description">Description:</label>
-    <input type="text" name="description" maxlength="255" required id="id_description">
-  </div>
-  
-    <label for="id_content">Content:</label>
-  <input id="id_content" name="content" type="hidden" name="content"  />
+    <div class="">
+      <label for="id_description" class="block" >Description:</label>
+      <input type="text" name="description" maxlength="255" required id="id_description" class="rounded w-full">
+    </div>
 
-  <trix-editor 
-    input="id_content" class="django-prose-editor trix-content" 
-    data-upload-attachment-url="/prose/attachment/">
+    <div class="">
+      <label for="id_category" class="block">Category:</label>
+      <div class="rounded w-full">
+      <!-- {{form.category }} -->
+      <select name="category" id="id_category" class="w-full">
+        <!-- {% for category in form.category %}
+        <option value="{{ category.id }}" class="w-10">{{ category }}</option>
+        {% endfor %} -->
+
+        {% for category in categories %}
+        <option value="{{ category.id }}">{{ category.category_name }}</option>
+        {% endfor %}
+      </select>
+      </div>      
+    </div>
+
+
+    <div class="">
+      <label for="id_content" class="block">Content:</label>
+      <input id="id_content" name="content" type="hidden" name="content" />
+
+      <trix-editor input="id_content" 
+      class="django-prose-editor trix-content rounded min-h-[20em] max-w-[100%] overflow-hidden" 
+      data-upload-attachment-url="/prose/attachment/">
     </trix-editor>
+    </div>
+
+    
 
     {{ form.media }}
 
 
-    <button type="submit">Submit Post</button>
+    <button 
+    type="submit" 
+    class="text-white text=lg sm:text-xl bg-primary-color hover:bg-blue-800 focus:ring-4 
+      focus:ring-blue-300 font-medium rounded-lg px-5 py-2.5 mr-2 mb-2">
+      Submit Post</button>
+
+    </div>
   </form>
 </main>
 

@@ -1,0 +1,18 @@
+{% extends '_base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="mt-24">
+
+<h1>Search results for "{{ request.GET.q }}"</h1>
+<ul>
+  {% for post in search_results %}
+    <li><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></li>
+  {% empty %}
+    <li>No results found.</li>
+  {% endfor %}
+</ul>
+
+</div>
+
+{% endblock content %}

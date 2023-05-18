@@ -5,6 +5,8 @@ from django.shortcuts import render
 from django.contrib.auth.mixins import UserPassesTestMixin
 from django.urls import reverse_lazy
 from django.http.response import HttpResponseRedirect
+from django.http import JsonResponse
+from django.template.loader import render_to_string
 
 from .models import Post, Category, Comment
 from .forms import CreatePostForm, UpdatePostForm, AddCommentForm
@@ -40,11 +42,12 @@ class CreatePostView(CategoriesListViewMixin, edit.CreateView):
         return super().form_valid(form)
     
 
-def PostDetailView(request, slug):
+def PostDetailView(request, slug, num_comments=6):
     post = get_object_or_404(Post, slug__iexact=slug)
     comments = Comment.objects.filter(
         post=post.id
-        ).order_by('-id')
+        ).order_by('-id')[:num_comments]
+    unpaginated_comments = Comment.objects.filter(post=post.id)
     categories = Category.objects.all()
 
     comment_form = AddCommentForm(request.POST or None)
@@ -63,11 +66,29 @@ def PostDetailView(request, slug):
     context = {
         'post':post,
         'comments':comments,
+        'unpaginated_comments': unpaginated_comments,
         'comment_form':comment_form,
+        'num_comments': num_comments,
         'categories': categories
         }
     template = 'posts/post_detail.html'
     return render(request, template, context)
+
+def load_more_comments(request):
+    post_id = request.GET.get('post_id')
+    offset = int(request.GET.get('offset'))
+    comments = Comment.objects.filter(
+        post=post_id
+    ).order_by('-id')[offset:offset+6]
+    
+    has_more_comments = Comment.objects.filter(
+        post=post_id
+    ).count() > offset + 6
+    data = {
+        'html': render_to_string('posts/comments.html', {'comments': comments}),
+        'has_more_comments': has_more_comments
+    }
+    return JsonResponse(data)
 
 
 class UpdatePostView(UserPassesTestMixin, CategoriesListViewMixin, edit.UpdateView):
@@ -109,3 +130,27 @@ class CategoryDetailView(CategoriesListViewMixin, generic.DetailView):
         context = super().get_context_data(*args, **kwargs)
         context['categoryposts'] = categoryposts
         return context
+    
+class DeleteCommentView(UserPassesTestMixin, edit.DeleteView):
+    model = Comment
+
+    def test_func(self):
+        '''
+        Forbid a user from deleting comments they
+        did not create.
+        '''
+        obj = self.get_object()
+        return obj.commentator == self.request.user
+    
+    def get_success_url(self):
+        post = self.get_object().post
+        return post.get_absolute_url()
+
+class SearchView(CategoriesListViewMixin, generic.ListView):
+    template_name = 'posts/search.html'
+    context_object_name = 'search_results'
+
+    def get_queryset(self):
+        query = self.request.GET.get('q')
+        object_list = Post.objects.search(query)
+        return object_list

@@ -1,3 +1,11 @@
-<h2>
-    404 error
-</h2>
+{% load static %}
+<title>Page not found</title>
+<link rel="stylesheet" href="{% static 'src/output.css' %}">
+
+<div class="flex items-center justify-center " >
+    <div  class="mt-40 md:mt-16">
+        {% include '404_error.svg' %}
+    </div>
+
+    <a href="{% url 'home' %}" class="text-xl">Go home</a>
+</div>

@@ -82,5 +82,5 @@ class Comment(models.Model):
     def __str__(self):
         return f"{self.comment_body} | {self.post}"
 
-    def get_absolute_url(self):
-        return reverse('post_detail', kwargs={'pk':self.pk})
+    # def get_absolute_url(self):
+    #     return reverse('post_detail', kwargs={'slug':self.pk})
