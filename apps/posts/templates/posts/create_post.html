@@ -5,14 +5,13 @@
 {% block content %}
 
 
-<main class="mt-12 md:mt-36 px-2 pb-16 xsm:px-48" style="border: 3px solid blu;">
-  <form method="POST" class=" xsm:px-20 sm:flex justify-center items-center" style="border: 1px solid re;">
+<main class="mt-12 md:mt-36 px-2 xsm:px-16 pb-16 " style="border: 3px solid blu;">
+
+  <h2 class="text-3xl text-gray-700 uppercase">Craft Your Article</h2>
+  <form method="POST" class="mt-9" style="border: 1px solid re;">
     {% csrf_token %}
 
-    <!-- {{ form.as_p }} -->
-    <!-- <div class="">
-    </div> -->
-    <div class="space-y-4">
+    <div class="space-y-4 lg:w-4/5 xl:w-4/6">
 
     <div class="">
       <label for="id_title" class="block">Title:</label>

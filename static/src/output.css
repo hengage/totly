@@ -1220,6 +1220,10 @@ input:checked + .toggle-bg {
   margin-top: 0.5rem;
 }
 
+.mt-6 {
+  margin-top: 1.5rem;
+}
+
 .block {
   display: block;
 }
@@ -1369,6 +1373,10 @@ input:checked + .toggle-bg {
 }
 
 .w-1\/2 {
+  width: 50%;
+}
+
+.w-2\/4 {
   width: 50%;
 }
 
@@ -1823,6 +1831,21 @@ input:checked + .toggle-bg {
   padding-right: 0px;
 }
 
+.px-10 {
+  padding-left: 2.5rem;
+  padding-right: 2.5rem;
+}
+
+.px-12 {
+  padding-left: 3rem;
+  padding-right: 3rem;
+}
+
+.px-16 {
+  padding-left: 4rem;
+  padding-right: 4rem;
+}
+
 .pr-4 {
   padding-right: 1rem;
 }
@@ -1930,6 +1953,10 @@ input:checked + .toggle-bg {
   font-weight: 800;
 }
 
+.uppercase {
+  text-transform: uppercase;
+}
+
 .not-italic {
   font-style: normal;
 }
@@ -2017,6 +2044,11 @@ input:checked + .toggle-bg {
 .text-red-600 {
   --tw-text-opacity: 1;
   color: rgb(224 36 36 / var(--tw-text-opacity));
+}
+
+.text-gray-800 {
+  --tw-text-opacity: 1;
+  color: rgb(31 41 55 / var(--tw-text-opacity));
 }
 
 .underline {
@@ -2361,6 +2393,14 @@ input:checked + .toggle-bg {
     width: 75%;
   }
 
+  .xsm\:w-2\/4 {
+    width: 50%;
+  }
+
+  .xsm\:w-4\/6 {
+    width: 66.666667%;
+  }
+
   .xsm\:basis-full {
     flex-basis: 100%;
   }
@@ -2415,6 +2455,10 @@ input:checked + .toggle-bg {
 
   .sm\:w-3\/6 {
     width: 50%;
+  }
+
+  .sm\:w-4\/6 {
+    width: 66.666667%;
   }
 
   .sm\:grid-cols-2 {
@@ -2558,6 +2602,10 @@ input:checked + .toggle-bg {
     width: 40%;
   }
 
+  .md\:w-4\/6 {
+    width: 66.666667%;
+  }
+
   .md\:flex-row {
     flex-direction: row;
   }
@@ -2674,6 +2722,22 @@ input:checked + .toggle-bg {
     margin-bottom: 1.5rem;
   }
 
+  .lg\:w-4\/6 {
+    width: 66.666667%;
+  }
+
+  .lg\:w-3\/5 {
+    width: 60%;
+  }
+
+  .lg\:w-3\/6 {
+    width: 50%;
+  }
+
+  .lg\:w-4\/5 {
+    width: 80%;
+  }
+
   .lg\:grid-cols-3 {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
@@ -2707,6 +2771,10 @@ input:checked + .toggle-bg {
 @media (min-width: 1280px) {
   .xl\:w-2\/4 {
     width: 50%;
+  }
+
+  .xl\:w-4\/6 {
+    width: 66.666667%;
   }
 
   .xl\:px-16 {
