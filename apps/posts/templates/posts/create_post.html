@@ -5,25 +5,26 @@
 {% block content %}
 
 
-<main class="mt-12 md:mt-36 px-2" style="border: 3px solid blu;">
-  <form method="POST" class="space-y-4" style="border: 1px solid re;">
+<main class="mt-12 md:mt-36 px-2 pb-16 xsm:px-48" style="border: 3px solid blu;">
+  <form method="POST" class=" xsm:px-20 sm:flex justify-center items-center" style="border: 1px solid re;">
     {% csrf_token %}
 
     <!-- {{ form.as_p }} -->
     <!-- <div class="">
     </div> -->
+    <div class="space-y-4">
 
-    <div>
+    <div class="">
       <label for="id_title" class="block">Title:</label>
       <input type="text" name="title" maxlength="255" required id="id_title" class="rounded w-full">
     </div>
 
-    <div>
+    <div class="">
       <label for="id_description" class="block" >Description:</label>
       <input type="text" name="description" maxlength="255" required id="id_description" class="rounded w-full">
     </div>
 
-    <div>
+    <div class="">
       <label for="id_category" class="block">Category:</label>
       <div class="rounded w-full">
       <!-- {{form.category }} -->
@@ -44,7 +45,8 @@
       <label for="id_content" class="block">Content:</label>
       <input id="id_content" name="content" type="hidden" name="content" />
 
-      <trix-editor input="id_content" class="django-prose-editor trix-content rounded"
+      <trix-editor input="id_content" 
+      class="django-prose-editor trix-content rounded min-h-[20em] max-w-[100%] overflow-hidden" 
       data-upload-attachment-url="/prose/attachment/">
     </trix-editor>
     </div>
@@ -59,6 +61,8 @@
     class="text-white bg-primary-color hover:bg-blue-800 focus:ring-4 
       focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2">
       Submit Post</button>
+
+    </div>
   </form>
 </main>
 

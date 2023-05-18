@@ -1292,6 +1292,42 @@ input:checked + .toggle-bg {
   height: 2.25rem;
 }
 
+.h-36 {
+  height: 9rem;
+}
+
+.h-44 {
+  height: 11rem;
+}
+
+.h-auto {
+  height: auto;
+}
+
+.min-h-screen {
+  min-height: 100vh;
+}
+
+.min-h-\[50\%\] {
+  min-height: 50%;
+}
+
+.min-h-\[100\%\] {
+  min-height: 100%;
+}
+
+.min-h-\[100em\] {
+  min-height: 100em;
+}
+
+.min-h-\[50em\] {
+  min-height: 50em;
+}
+
+.min-h-\[20em\] {
+  min-height: 20em;
+}
+
 .w-full {
   width: 100%;
 }
@@ -1320,6 +1356,10 @@ input:checked + .toggle-bg {
   width: 9rem;
 }
 
+.w-10 {
+  width: 2.5rem;
+}
+
 .w-16 {
   width: 4rem;
 }
@@ -1330,10 +1370,6 @@ input:checked + .toggle-bg {
 
 .w-1\/2 {
   width: 50%;
-}
-
-.w-10 {
-  width: 2.5rem;
 }
 
 .min-w-fit {
@@ -1354,6 +1390,14 @@ input:checked + .toggle-bg {
 }
 
 .max-w-full {
+  max-width: 100%;
+}
+
+.max-w-\[39\%\] {
+  max-width: 39%;
+}
+
+.max-w-\[100\%\] {
   max-width: 100%;
 }
 
@@ -1777,21 +1821,6 @@ input:checked + .toggle-bg {
 .px-0 {
   padding-left: 0px;
   padding-right: 0px;
-}
-
-.px-11 {
-  padding-left: 2.75rem;
-  padding-right: 2.75rem;
-}
-
-.px-1 {
-  padding-left: 0.25rem;
-  padding-right: 0.25rem;
-}
-
-.px-24 {
-  padding-left: 6rem;
-  padding-right: 6rem;
 }
 
 .pr-4 {
@@ -2341,11 +2370,35 @@ input:checked + .toggle-bg {
     margin-right: calc(1.25rem * var(--tw-space-x-reverse));
     margin-left: calc(1.25rem * calc(1 - var(--tw-space-x-reverse)));
   }
+
+  .xsm\:px-16 {
+    padding-left: 4rem;
+    padding-right: 4rem;
+  }
+
+  .xsm\:px-28 {
+    padding-left: 7rem;
+    padding-right: 7rem;
+  }
+
+  .xsm\:px-48 {
+    padding-left: 12rem;
+    padding-right: 12rem;
+  }
+
+  .xsm\:px-20 {
+    padding-left: 5rem;
+    padding-right: 5rem;
+  }
 }
 
 @media (min-width: 640px) {
   .sm\:block {
     display: block;
+  }
+
+  .sm\:flex {
+    display: flex;
   }
 
   .sm\:grid {
@@ -2497,6 +2550,14 @@ input:checked + .toggle-bg {
     width: 60%;
   }
 
+  .md\:w-2\/4 {
+    width: 50%;
+  }
+
+  .md\:w-2\/5 {
+    width: 40%;
+  }
+
   .md\:flex-row {
     flex-direction: row;
   }
@@ -2547,6 +2608,11 @@ input:checked + .toggle-bg {
   .md\:px-0 {
     padding-left: 0px;
     padding-right: 0px;
+  }
+
+  .md\:px-16 {
+    padding-left: 4rem;
+    padding-right: 4rem;
   }
 
   .md\:pt-14 {
