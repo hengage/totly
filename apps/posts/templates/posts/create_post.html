@@ -11,55 +11,78 @@
   <form method="POST" class="mt-9" style="border: 1px solid re;">
     {% csrf_token %}
 
+    {% if form.errors %}
+      {% for field, error in form.errors.items %}
+        {% if not form.content.errors and not form.title.errors and not form.description.errors %}
+          {{ error }} <br>
+        {% endif %}
+      {% endfor %}
+    {% endif %}
+
     <div class="space-y-4 lg:w-4/5 xl:w-4/6">
+      <div class="">
+        <label for="id_title" class="block">Title:</label>
+        <input type="text" name="title" maxlength="255" required id="id_title" class="rounded w-full">
 
-    <div class="">
-      <label for="id_title" class="block">Title:</label>
-      <input type="text" name="title" maxlength="255" required id="id_title" class="rounded w-full">
-    </div>
+        <div class="text-sm text-red-600">
+          {% for error in form.title.errors %}
+          {{ error }}
+          {% endfor %}
+        </div>
 
-    <div class="">
-      <label for="id_description" class="block" >Description:</label>
-      <input type="text" name="description" maxlength="255" required id="id_description" class="rounded w-full">
-    </div>
 
-    <div class="">
-      <label for="id_category" class="block">Category:</label>
-      <div class="rounded w-full">
-      <!-- {{form.category }} -->
-      <select name="category" id="id_category" class="w-full">
-        <!-- {% for category in form.category %}
+
+      </div>
+
+      <div class="">
+        <label for="id_description" class="block">Description:</label>
+        <input type="text" name="description" maxlength="255" required id="id_description" class="rounded w-full">
+
+        <div class="text-sm text-red-600">
+          {% for error in form.description.errors %}
+            {{ error }}
+          {% endfor %}
+        </div>
+      </div>
+
+      <div class="">
+        <label for="id_category" class="block">Category:</label>
+        <div class="rounded w-full">
+          <!-- {{form.category }} -->
+          <select name="category" id="id_category" class="w-full">
+            <!-- {% for category in form.category %}
         <option value="{{ category.id }}" class="w-10">{{ category }}</option>
         {% endfor %} -->
 
-        {% for category in categories %}
-        <option value="{{ category.id }}">{{ category.category_name }}</option>
-        {% endfor %}
-      </select>
-      </div>      
-    </div>
+            {% for category in categories %}
+              <option value="{{ category.id }}">{{ category.category_name }}</option>
+            {% endfor %}
+          </select>
+        </div>
+      </div>
 
 
-    <div class="">
-      <label for="id_content" class="block">Content:</label>
-      <input id="id_content" name="content" type="hidden" name="content" />
+      <div class="">
+        <label for="id_content" class="block">Content:</label>
+        <input id="id_content" name="content" type="hidden" name="content" />
 
-      <trix-editor input="id_content" 
-      class="django-prose-editor trix-content rounded min-h-[20em] max-w-[100%] overflow-hidden" 
-      data-upload-attachment-url="/prose/attachment/">
-    </trix-editor>
-    </div>
+        <trix-editor input="id_content"
+          class="django-prose-editor trix-content rounded min-h-[20em] max-w-[100%] overflow-hidden"
+          data-upload-attachment-url="/prose/attachment/">
+        </trix-editor>
 
-    
+        <div class="text-sm text-red-600">
+          {% for error in form.content.errors %}
+            {{ error }}
+          {% endfor %}
+        </div>
+      </div>
 
-    {{ form.media }}
+      {{ form.media }}
 
-
-    <button 
-    type="submit" 
-    class="text-white text=lg sm:text-xl bg-primary-color hover:bg-blue-800 focus:ring-4 
+      <button type="submit" class="text-white text=lg sm:text-xl bg-primary-color hover:bg-blue-800 focus:ring-4 
       focus:ring-blue-300 font-medium rounded-lg px-5 py-2.5 mr-2 mb-2">
-      Submit Post</button>
+        Submit Post</button>
 
     </div>
   </form>
