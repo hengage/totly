@@ -111,12 +111,16 @@
                     </div>
                 </address>
 
-                <h1 class="mb-4 text-3xl font-extrabold leading-tight text-gray-900 lg:mb-6 lg:text-4xl">
+                <h1 class="mb-4 text-3xl font-extrabold font-header leading-tight text-gray-900 lg:mb-6 lg:text-4xl">
                      {{ post.title.title }} 
                 </h1>
             </div>
 
+            <div class="font-sans font-bold">
+                
             {{ post.content | safe}}
+
+            </div>
         </article>
     </div>
 </main>

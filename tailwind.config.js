@@ -21,7 +21,13 @@ module.exports = {
       },
       screens: {
         'xsm': '520px'
-      }
+      },
+      fontFamily: {
+        sans: ['Lato', 'sans-serif'],
+        display: ['Montserrat', 'sans-serif'],
+        header: ['Bangers', 'cursive'],
+        header2: ['Anton', 'sans-serif']
+      },
     },
   },
   plugins: [ require('flowbite/plugin') ],

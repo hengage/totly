@@ -1,18 +1,24 @@
 {% extends '_base.html' %}
 {% load static %}
+
 {% block content %}
-
-<div class="mt-24">
-
-<h1>Search results for "{{ request.GET.q }}"</h1>
-<ul>
-  {% for post in search_results %}
-    <li><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></li>
-  {% empty %}
-    <li>No results found.</li>
-  {% endfor %}
-</ul>
-
-</div>
-
+  <div class="mt-32 mb-16 max-w-3xl mx-auto px-4">
+    <h1 class="text-3xl text-primary-color font-bold font-header mb-8">Search results for "{{ request.GET.q }}"</h1>
+    {% if search_results %}
+      <ul class="space-y-8 font-sans">
+        {% for post in search_results %}
+          <li>
+            <a href="{{ post.get_absolute_url }}" class="block bg-white shadow-md rounded-lg px-6 py-4 transition-colors duration-300 hover:bg-gray-100">
+              <h2 class="text-2xl font-bold text-gray-800">{{ post.title }}</h2>
+              <p class="text-gray-600">{{ post.description }}</p>
+            </a>
+          </li>
+        {% empty %}
+          <li class="text-gray-700 text-xl">No results found.</li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p class="text-gray-700 text-xl">No post found.</p>
+    {% endif %}
+  </div>
 {% endblock content %}
