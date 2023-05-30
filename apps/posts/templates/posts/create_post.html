@@ -5,9 +5,9 @@
 {% block content %}
 
 
-<main class="mt-12 md:mt-36 px-2 xsm:px-16 pb-16 " style="border: 3px solid blu;">
+<main class="mt-12 md:mt-36 px-2 xsm:px-16 pb-16" style="border: 3px solid blu;">
 
-  <h2 class="text-3xl text-gray-700 uppercase">Craft Your Article</h2>
+  <h2 class="text-3xl text-gray-700 font-header uppercase">Craft Your Article</h2>
   <form method="POST" class="mt-9" style="border: 1px solid re;">
     {% csrf_token %}
 
@@ -80,8 +80,11 @@
 
       {{ form.media }}
 
-      <button type="submit" class="text-white text=lg sm:text-xl bg-primary-color hover:bg-blue-800 focus:ring-4 
-      focus:ring-blue-300 font-medium rounded-lg px-5 py-2.5 mr-2 mb-2">
+      <button 
+        type="submit" 
+        class="text-white text-lg sm:text-lg font-sans bg-primary-color hover:bg-blue-800 focus:ring-4 
+        focus:ring-blue-300 font-medium rounded-lg px-3 py-2 mr-2 mb-2"
+      >
         Submit Post</button>
 
     </div>

@@ -1870,6 +1870,10 @@ input:checked + .toggle-bg {
   font-family: Lato, sans-serif;
 }
 
+.font-header2 {
+  font-family: Anton, sans-serif;
+}
+
 .text-xl {
   font-size: 1.25rem;
   line-height: 1.75rem;
@@ -2471,6 +2475,11 @@ input:checked + .toggle-bg {
   .sm\:text-4xl {
     font-size: 2.25rem;
     line-height: 2.5rem;
+  }
+
+  .sm\:text-lg {
+    font-size: 1.125rem;
+    line-height: 1.75rem;
   }
 }
 
