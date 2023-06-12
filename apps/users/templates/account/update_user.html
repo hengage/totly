@@ -4,6 +4,8 @@
 
 {% block content %} 
  
+<div class="mt-20">
+
 <form method="post">
     {% csrf_token %}
     
@@ -11,5 +13,6 @@
 
     <button type="submit">Update</button>
 </form>
+</div>
 
 {% endblock content %}

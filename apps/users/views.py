@@ -24,11 +24,11 @@ class UpdateUserView(
     form_class = UpdateUserForm
     model = User
     context_object_name = 'current_user'
-    template_name = 'user/update_user.html'
+    template_name = 'account/update_user.html'
     success_message = 'Hello %(first_name)s Details changed successfully!'
 
     def get_success_url(self):
-        return reverse('update_user', kwargs={'pk': self.get_object().id})
+        return reverse('account/update_user', kwargs={'pk': self.get_object().id})
 
     def test_func(self):
         obj = self.get_object()
