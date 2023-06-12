@@ -1,20 +1,31 @@
 {% extends '_base.html' %} 
 
-
 {% block title %} totly - category | {{ category.category_name }} {% endblock title %}
+
 
 {% block content %}
 
-<main class="mt-12 md:mt-36">
-    {% for post in categoryposts %} 
-        {{ post.title }}
-        {{ post.author }}
-    {% empty %} 
-        <h3>No posts related to {{ category.category_name }}</h3>
-    {% endfor %}
-    </main>
-<h2> {{ category.category_name.title }}</h2>
-{{ categoryposts.post.title }}
+    <div class="mt-8 xsm:mt-32 mb-16 max-w-3xl mx-auto px-4">
+    <h2 class="text-3xl text-primary-color font-bold font-header mb-8">
+         Category - {{ category.category_name.title }}
+    </h2>
 
+        {% if categoryposts %}
+          <ul class="space-y-8 font-sans">
+            {% for post in categoryposts %}
+              <li>
+                <a href="{{ post.get_absolute_url }}" class="block bg-white shadow-md rounded-lg px-6 py-4 transition-colors duration-300 hover:bg-gray-100">
+                  <h2 class="text-2xl font-bold text-gray-800">{{ post.title }}</h2>
+                  <p class="text-gray-600">{{ post.description }}</p>
+                </a>
+              </li>
+            {% empty %}
+              <li class="text-gray-700 text-xl">No results found.</li>
+            {% endfor %}
+          </ul>
+        {% else %}
+          <p class="text-gray-700 text-xl">No post found.</p>
+        {% endif %}
+      </div>
 
 {% endblock content %}
