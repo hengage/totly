@@ -11,14 +11,18 @@ from posts.views import CategoriesListViewMixin
 
 User = get_user_model()
 
+
 class CustomLoginView(CategoriesListViewMixin, LoginView):
     pass
 
+
 class CustomSIgnUpView(CategoriesListViewMixin, SignupView):
     pass
+
+
 class UpdateUserView(
-    UserPassesTestMixin, 
-    SuccessMessageMixin, 
+    UserPassesTestMixin,
+    SuccessMessageMixin,
     UpdateView
 ):
     form_class = UpdateUserForm
