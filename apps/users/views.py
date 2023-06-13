@@ -28,7 +28,7 @@ class UpdateUserView(
     success_message = 'Hello %(first_name)s Details changed successfully!'
 
     def get_success_url(self):
-        return reverse('account/update_user', kwargs={'pk': self.get_object().id})
+        return reverse('update_user', kwargs={'slug': self.get_object().slug})
 
     def test_func(self):
         obj = self.get_object()
