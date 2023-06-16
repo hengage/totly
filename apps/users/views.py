@@ -3,6 +3,8 @@ from django.urls import reverse
 from django.contrib.auth import get_user_model
 from django.contrib.auth.mixins import UserPassesTestMixin
 from django.contrib.messages.views import SuccessMessageMixin
+from allauth.account.models import EmailAddress
+
 
 from allauth.account.views import LoginView, SignupView
 
@@ -30,6 +32,7 @@ class UpdateUserView(
     context_object_name = 'current_user'
     template_name = 'account/update_user.html'
     success_message = 'Hello %(first_name)s Details changed successfully!'
+    
 
     def get_success_url(self):
         return reverse('update_user', kwargs={'slug': self.get_object().slug})
@@ -37,3 +40,10 @@ class UpdateUserView(
     def test_func(self):
         obj = self.get_object()
         return obj == self.request.user
+    
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        email_addresses = EmailAddress.objects.filter(user=self.request.user)
+        context['email_addresses'] = email_addresses
+        return context

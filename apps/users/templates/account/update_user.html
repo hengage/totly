@@ -14,13 +14,23 @@
     </ul>
   {% endif %}
 
+  <a href="{% url 'account_email' %}">Email settings</a>
+
 <form method="post">
     {% csrf_token %}
     
     {{ form.as_p }}
 
     <button type="submit">Update</button>
+
 </form>
+
+
+Email:
+{% for email_address in email_addresses %}
+    {{ email_address.email }}
+{% endfor %}
+
 </div>
 
 {% endblock content %}
