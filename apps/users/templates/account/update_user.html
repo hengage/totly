@@ -1,42 +1,43 @@
 {% extends '_base.html' %} 
 
-{% block title %} totly - update your details {% endblock title %}
+{% block title %}totly - update your details{% endblock title %}
 
 {% block content %} 
  
-<div class="mt-20">
+<div class="mt-20 flex justify-center ">
+  <div class="">
+
 
     {% if messages %}
     <ul class="messages">
-      {% for message in messages %}
+        {% for message in messages %}
         <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-      {% endfor %}
+        {% endfor %}
     </ul>
-  {% endif %}
+    {% endif %}
 
-<h2>Profile</h2>
-<form method="post">
-    {% csrf_token %}
-    
-    {{ form.as_p }}
+    <h2 class="text-2xl font-bold mb-4">Profile</h2>
+    <form method="post">
+        {% csrf_token %}
 
-    <button type="submit">Update</button>
+        {{ form.as_p }}
 
-</form>
+        <button type="submit" class="bg-blue-500 text-white py-2 px-4 rounded">Update</button>
 
-<br/>
-Email:
-{% if primary_email %} 
-{{ primary_email}} (primary)<br><br>
+    </form>
 
-{% endif %}   
+    <br/>
+    <p class="font-bold">Email:</p>
+    {% if primary_email %} 
+        <p>{{ primary_email.email }} (primary)</p><br><br>
+    {% endif %}   
 
-{% for email_address in other_email_address %}
-    {{ email_address.email }} <br><br>
-{% endfor %} 
+    {% for email_address in other_email_address %}
+        <p>{{ email_address.email }}</p><br><br>
+    {% endfor %} 
 
-<a href="{% url 'account_email' %}">Email settings</a>
-
+    <a href="{% url 'account_email' %}" class="text-blue-500">Email settings</a>
+  </div>
 
 </div>
 
