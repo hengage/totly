@@ -44,6 +44,8 @@ class UpdateUserView(
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        email_addresses = EmailAddress.objects.filter(user=self.request.user)
-        context['email_addresses'] = email_addresses
+        primary_email = EmailAddress.objects.filter(user=self.request.user).filter(primary=True).first()
+        other_email_addresses = EmailAddress.objects.filter(user=self.request.user).exclude(primary=True)
+        context['other_email_addresses'] = other_email_addresses
+        context['primary_email'] = primary_email
         return context

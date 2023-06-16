@@ -14,8 +14,7 @@
     </ul>
   {% endif %}
 
-  <a href="{% url 'account_email' %}">Email settings</a>
-
+<h2>Profile</h2>
 <form method="post">
     {% csrf_token %}
     
@@ -25,11 +24,19 @@
 
 </form>
 
-
+<br/>
 Email:
-{% for email_address in email_addresses %}
-    {{ email_address.email }}
-{% endfor %}
+{% if primary_email %} 
+{{ primary_email}} (primary)<br><br>
+
+{% endif %}   
+
+{% for email_address in other_email_addresses %}
+    {{ email_address.email }} <br><br>
+{% endfor %} 
+
+<a href="{% url 'account_email' %}">Email settings</a>
+
 
 </div>
 
