@@ -4,10 +4,8 @@
 
 {% block content %}
 
-<div class="mt-20 flex justify-center ">
-  <div class="">
-
-
+<div class="mt-20 pt-20 md:flex flex-col justify-center items-center" styl="border: 1px solid red;">
+  <div class="md:w-2/4 " styl="border: 1px solid blue;">
     {% if messages %}
     <ul class="messages">
       {% for message in messages %}
@@ -16,37 +14,54 @@
     </ul>
     {% endif %}
 
-    <h2 class="text-2xl font-bold mb-4">Profile</h2>
-    <form method="post">
+    <div class="md:flex md:items-start justify-around">
+    <h2 class="text-lg  mb-8">
+      Welcome to your profile page! This page provides you with an overview of your user profile information 
+      and allows you to update your profile details. 
+    </h2>
+    </div>
+
+    <form method="post" styl="border: 2px dotted greenyellow;">
       {% csrf_token %}
 
-      <p>
-      <label for="id_first_name">First name:</label>
-      <input type="text" name="first_name" value="{{request.user.first_name}}" maxlength="150" required id="id_first_name">
-      </p>
+      <div class="mt-4 md:flex md:items-center justify-around">
+        <label for="id_first_name" class="md:w-1/4">First name</label>
+        <input type="text" name="first_name" value="{{ request.user.first_name }}" maxlength="150" required
+          id="id_first_name" class="md:w-1/4 mt-2 md:mt-0">
+      </div>
 
-      <p>
-        <label for="id_last_name">Last name:</label>
-        <input type="text" name="last_name" value={{request.user.last_name}} maxlength="150" required id="id_last_name">
+      <div class="mt-4 md:flex md:items-center justify-around">
+        <label for="id_last_name" class="md:w-1/4">Last name</label>
+        <input type="text" name="last_name" value={{request.user.last_name}} maxlength="150" required id="id_last_name"
+          class="md:w-1/4 mt-2 md:mt-0">
+      </div>
 
-      </p>
+
+      <div class=" flex justify-center mt-12">
         <button type="submit" class="bg-blue-500 text-white py-2 px-4 rounded">Update</button>
-
+      </div>
     </form>
-
-    <br />
-    <p class="font-bold">Email:</p>
-    {% if primary_email %}
-    <p>{{ primary_email.email }} (primary)</p><br><br>
-    {% endif %}
-
-    {% for email_address in other_email_address %}
-    <p>{{ email_address.email }}</p><br><br>
-    {% endfor %}
-
-    <a href="{% url 'account_email' %}" class="text-blue-500">Email settings</a>
   </div>
 
+
+  <div class="px-6 mt-20 md:w-2/4 md:pl-24 relative"
+    styl="border: 2px dashed green;">
+    <p class="font-bold">Email</p>
+    <a href="{% url 'account_email' %}" class="text-blue-500 float-right absolute top-0 right-2.5">Email settings</a>
+
+
+    <ul class="mt-2 space-y-3 mb-10">
+      {% if primary_email %}
+      <li>{{ primary_email.email }} (primary)</li>
+      {% endif %}
+
+      {% for email_address in other_email_address %}
+      <li>{{ email_address.email }}</li>
+      {% endfor %}
+    </ul>
+
+
+  </div>
 </div>
 
 {% endblock content %}
