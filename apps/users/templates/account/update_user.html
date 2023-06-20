@@ -4,8 +4,7 @@
 
 {% block content %}
 
-<div class="md:mt-20 px-4 pt-16 pb-14 md:flex flex-col justify-center items-center" 
-styl="border: 1px solid red;">
+<div class="md:mt-20 px-4 pt-16 pb-14 md:flex flex-col justify-center items-center" styl="border: 1px solid red;">
   <div class="xsm:w-[90%] lg:w-2/4 " styl="border: 1px solid blue;">
     {% if messages %}
     <ul class="messages">
@@ -28,13 +27,13 @@ styl="border: 1px solid red;">
       <div class="mt-4 md:flex md:items-center justify-around">
         <label for="id_first_name" class="md:w-1/4 block">First name</label>
         <input type="text" name="first_name" value="{{ request.user.first_name }}" maxlength="150" required
-          id="id_first_name" class="w-full md:w-1/4 mt-2 md:mt-0">
+          id="id_first_name" class="w-full md:w-1/4 mt-2 md:mt-0 rounded-md">
       </div>
 
       <div class="mt-4 md:flex md:items-center justify-around">
         <label for="id_last_name" class="md:w-1/4 block">Last name</label>
         <input type="text" name="last_name" value={{request.user.last_name}} maxlength="150" required id="id_last_name"
-          class="w-full md:w-1/4 mt-2 md:mt-0">
+          class="w-full md:w-1/4 mt-2 md:mt-0 rounded-md">
       </div>
 
 
