@@ -1074,6 +1074,26 @@ input:checked + .toggle-bg {
   bottom: 0px;
 }
 
+.top-2\.5 {
+  top: 0.625rem;
+}
+
+.top-2 {
+  top: 0.5rem;
+}
+
+.top-3\.5 {
+  top: 0.875rem;
+}
+
+.top-4 {
+  top: 1rem;
+}
+
+.top-6 {
+  top: 1.5rem;
+}
+
 .z-20 {
   z-index: 20;
 }
@@ -1234,6 +1254,14 @@ input:checked + .toggle-bg {
 
 .mt-6 {
   margin-top: 1.5rem;
+}
+
+.mt-11 {
+  margin-top: 2.75rem;
+}
+
+.mb-14 {
+  margin-bottom: 3.5rem;
 }
 
 .block {
@@ -1823,6 +1851,11 @@ input:checked + .toggle-bg {
   padding-right: 0px;
 }
 
+.py-6 {
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+}
+
 .pr-4 {
   padding-right: 1rem;
 }
@@ -2401,6 +2434,14 @@ input:checked + .toggle-bg {
 }
 
 @media (min-width: 520px) {
+  .xsm\:right-24 {
+    right: 6rem;
+  }
+
+  .xsm\:right-10 {
+    right: 2.5rem;
+  }
+
   .xsm\:mt-32 {
     margin-top: 8rem;
   }
@@ -2446,6 +2487,11 @@ input:checked + .toggle-bg {
   .xsm\:px-16 {
     padding-left: 4rem;
     padding-right: 4rem;
+  }
+
+  .xsm\:px-0 {
+    padding-left: 0px;
+    padding-right: 0px;
   }
 }
 

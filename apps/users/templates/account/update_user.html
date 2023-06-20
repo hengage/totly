@@ -15,13 +15,14 @@
     {% endif %}
 
     <div class="md:flex md:items-start justify-around">
-      <h2 class="text-xl  mb-8 font-header">
+      <h2 class="text-xl  mb-14 font-header">
         Welcome to your profile page! This page provides you with an overview of your user profile information
         and allows you to update your profile details.
       </h2>
     </div>
 
-    <form method="post" styl="border: 2px dotted greenyellow;">
+    <form method="post" class="py-6 px-6 bg-white border border-gray-200 rounded-lg shadow-lg" 
+    styl="border: 2px dotted greenyellow;">
       {% csrf_token %}
 
       <div class="mt-4 md:flex md:items-center justify-around">
@@ -44,9 +45,12 @@
   </div>
 
   <!-- ====================== Email Address ================= -->
-  <div class="md:px-6 mt-20 xsm:w-[90%] lg:w-2/4 md:pl-24 relative" styl="border: 2px dashed green;">
+  <div class="py-6 px-4 xsm:px-0 md:px-6 mt-14 xsm:w-[90%] lg:w-2/4 md:pl-24 relative bg-white border border-gray-200 rounded-lg shadow-lg" 
+  styl="border: 2px dashed green;">
     <p class="font-bold">Email</p>
-    <a href="{% url 'account_email' %}" class="text-blue-500 float-right absolute top-0 right-2.5">Email settings</a>
+    <a href="{% url 'account_email' %}" 
+    class="text-blue-500 float-right absolute top-6 right-2.5 xsm:right-10">
+    Email settings</a>
 
 
     <ul class="mt-2 space-y-3 mb-10">
@@ -61,7 +65,8 @@
   </div>
 
   <!-- =========================== Password ========================= -->
-  <div class="xsm:w-[90%] lg:w-2/4  md:pl-24 mt-6" styl="border: 2px solid black;">
+  <div class="py-6 px-6 xsm:w-[90%] lg:w-2/4  md:pl-24 mt-14 bg-white border border-gray-200 rounded-lg shadow-lg" 
+  styl="border: 2px solid black;">
     <h2 class="font-bold">Password</h2>
     <p>
 
