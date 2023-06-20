@@ -25,6 +25,7 @@ class CustomSIgnUpView(CategoriesListViewMixin, SignupView):
 class UpdateUserView(
     UserPassesTestMixin,
     SuccessMessageMixin,
+    CategoriesListViewMixin,
     UpdateView
 ):
     form_class = UpdateUserForm
