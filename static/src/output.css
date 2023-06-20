@@ -1887,6 +1887,10 @@ input:checked + .toggle-bg {
   font-family: Lato, sans-serif;
 }
 
+.font-header2 {
+  font-family: Anton, sans-serif;
+}
+
 .text-xl {
   font-size: 1.25rem;
   line-height: 1.75rem;
@@ -2405,6 +2409,26 @@ input:checked + .toggle-bg {
     width: 75%;
   }
 
+  .xsm\:w-full {
+    width: 100%;
+  }
+
+  .xsm\:w-5\/6 {
+    width: 83.333333%;
+  }
+
+  .xsm\:w-\[90\%\] {
+    width: 90%;
+  }
+
+  .xsm\:w-\[10\%\] {
+    width: 10%;
+  }
+
+  .xsm\:w-\[0\%\] {
+    width: 0%;
+  }
+
   .xsm\:basis-full {
     flex-basis: 100%;
   }
@@ -2724,6 +2748,10 @@ input:checked + .toggle-bg {
     width: 80%;
   }
 
+  .lg\:w-2\/4 {
+    width: 50%;
+  }
+
   .lg\:grid-cols-3 {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
@@ -2737,6 +2765,11 @@ input:checked + .toggle-bg {
   .lg\:px-14 {
     padding-left: 3.5rem;
     padding-right: 3.5rem;
+  }
+
+  .lg\:px-6 {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
   }
 
   .lg\:pt-16 {
